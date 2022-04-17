@@ -42,10 +42,20 @@
   display: inline-block;
   width: auto;
   height: auto;
-  border: 1px solid rgba(0,0,0,0.5);
-  border-radius: 5%;
-  padding:16px
+  border: 1px solid rgba(0,0,0,0.1);
+  /* border-radius: 5%; */
+  padding:16px ;
+  /* box-shadow: 5px 5px 5px #888888; */
+  background-color: #FFF;
+  transition: all .5s;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 20px -12px rgba(0,0,0,0.1);
 }
+
+.price-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
 .container{
   position: relative;
   width: 100%;  
@@ -70,6 +80,7 @@
   justify-content: center;
   align-content: center;
 }
+
 .price{
   color:orange;
   margin : 8px 0;

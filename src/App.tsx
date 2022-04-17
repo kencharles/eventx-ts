@@ -1,58 +1,75 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
+// import logo from './logo.svg'
 import './App.css'
 import React, { useEffect, useState } from 'react'
-// import { Input } from 'antd'
-import axios from 'axios'
+import request from './utils/request'
 import PriceItem from './component/priceItem'
 
-const EventX = () => {
-	const [getBtc, setBtc] = useState<any[]>([])
-	console.log('%c  getBtc:', 'color: #0e93e0;background: #aaefe5;', getBtc)
-	// const [currencyKey] = useState([])
-	console.log('%c  getBtc:', 'color: #0e93e0;background: #aaefe5;', getBtc)
+const currencyKey = [
+	'btc-usd',
+	'eth-usd',
+	'ltc-usd',
+	'xmr-usd',
+	'xrp-usd',
+	'doge-usd',
+	'dash-usd',
+	'maid-usd',
+	'lsk-usd',
+	'sjcx-usd']
+
+const EventX :React.FC= () => {
+	const [getBtc, setBtc] = useState<any>([])
+
 	const btcUsd = async () => {
 		try {
-			const getList = await axios.get(
-				'https://b1264722-067f-47f8-9d37-d4fc9e4b7d46.mock.pstmn.io/ticker/btc'
-			)
-			console.log(
-				'%c  getList:',
-				'color: #0e93e0;background: #aaefe5;',
-				getList
-			)
-			const getData = getList.data.data
-			console.log(
-				'%c  getData:',
-				'color: #0e93e0;background: #aaefe5;',
-				getData
-			)
-			setBtc(getData)
+			//---------------------------真实api部分------------------------------
+				// let buffer: any[]=[];
+				// currencyKey.map(async(item:any)=>{
+				// 	const getList = await request({url:item})
+				// 	const getData:any = getList?.data?.data
+				// 	buffer.push(getData)
+				// })
+
+
+				// -----------------------mock部分--------------------------
+
+				const getList = await request({url:'/ticker/btc'}) // mock请求
+				const buffer = getList?.data?.data
+			
+				setBtc(buffer)
+			
+		
 		} catch (error) {
 			console.log('%c  error:', 'color: #0e93e0;background: #aaefe5;', error)
 		}
 	}
 
-	useEffect(() => {
-		btcUsd()
-		// fetchBitcoinPrice()
-	}, [])
+	const timer = ()=>{
+		setTimeout(() => {
+			btcUsd()
+		}, 30000);
+	}
 
+
+	useEffect(() => {
+		btcUsd();
+		// timer()
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 	return (
 		<div className='EventX'>
 			<div className='container'>
-				<div className='header-bar'>cryptocurrency Realtime Price</div>
+				<h1 className='header-bar'>Cryptocurrency Realtime Price</h1>
 				<p className='content'>
 					{getBtc.map((item:any, index:number) => {
 						const { ticker } = item
-						const { base, change, price, target, volume = '' } = ticker
+						const { change } = ticker
 						const isNegative = change.substring(0, 1) === '-'
 						return (
 							<PriceItem
 								key={index}
-								base={base}
-								change={change}
-								price={price}
-								target={target}
-								volume={volume}
+								{...ticker}
 								isNegative={isNegative}
 							/>
 						)

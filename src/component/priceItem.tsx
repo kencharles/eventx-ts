@@ -10,7 +10,7 @@ interface IProps {
     key:number
 }
 
-const PriceItem : React.FC<IProps> = (props:any)=>{
+const PriceItem : React.FC<IProps> = (props:IProps)=>{
     const {base='',target='',price='',volume='',isNegative,change='',key} = props;
 
     return (
@@ -22,7 +22,9 @@ const PriceItem : React.FC<IProps> = (props:any)=>{
             <div className='volume-and-change'>
                 <div className='volume'>
                     volume:
-                    <p style={{ margin: '8px 0', width: '100%' }}>{volume}</p>
+                    <p style={{ margin: '8px 0', width: '100%' }}>
+                        {volume}
+                        </p>
                 </div>
                 <div className='change'>
                     change:

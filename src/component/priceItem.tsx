@@ -11,10 +11,10 @@ interface IProps {
 }
 
 const PriceItem : React.FC<IProps> = (props:IProps)=>{
-    const {base='',target='',price='',volume='',isNegative,change='',key} = props;
+    const {base='',target='',price='',volume='',isNegative,change=''} = props;
 
     return (
-        <div key={key} className='price-item'>
+        <div className='price-item'>
             <h1 style={{ fontWeight: 'bold', margin: 0, color: 'black' }}>
                 {base}-{target}
             </h1>

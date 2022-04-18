@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# WaikeiChan's Interview project
 
 This is WaikeiChan's interview website.
 

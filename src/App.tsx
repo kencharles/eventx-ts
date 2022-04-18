@@ -55,7 +55,7 @@ const EventX: React.FC = () => {
 		intervalHandle.current = setInterval(() => {
 			btcUsd()
 			setCount((count) => count + 1)
-		}, 10000)
+		}, 30000)
 	}
 
 	useEffect(() => {

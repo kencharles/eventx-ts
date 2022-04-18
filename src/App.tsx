@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
-// import logo from './logo.svg'
-import './App.css'
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState, useRef } from 'react'
 import request from './utils/request'
 import PriceItem from './component/priceItem'
@@ -19,18 +16,17 @@ import { GithubOutlined } from '@ant-design/icons'
 // 	'maid-usd',
 // 	'lsk-usd',
 // 	'sjcx-usd'
-// ]
+// ] // api key for real api
 
 const EventX: React.FC = () => {
 	const [getBtc, setBtc] = useState<any>([])
 	const [loading, setLoading] = useState<boolean>(false)
 	const [count, setCount] = useState<number>(0)
 	let intervalHandle = useRef<any>()
-	console.log('%c  count:', 'color: #0e93e0;background: #aaefe5;', count)
 	const btcUsd = async () => {
 		try {
 			setLoading(true)
-			//---------------------------真实api部分------------------------------
+			//---------------------------真实api部分()------------------------------
 			// let buffer: any[]=[];
 			// currencyKey.map(async(item:any)=>{
 			// 	const getList = await request({url:item})
@@ -51,6 +47,9 @@ const EventX: React.FC = () => {
 		}
 	}
 
+	useEffect(() => {
+		document.title = 'Interview for WaikeiChan'
+	})
 	const setTimer = () => {
 		intervalHandle.current = setInterval(() => {
 			btcUsd()

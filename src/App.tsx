@@ -70,7 +70,7 @@ const EventX: React.FC = () => {
 			<div className='container'>
 				<h1 className='header-bar'>Cryptocurrency Realtime Price</h1>
 				<div className='content'>
-					{loading ? <Spin></Spin> : renderPriceItems()}
+					{loading ? <Spin>{renderPriceItems()}</Spin> : renderPriceItems()}
 				</div>
 			</div>
 		</div>

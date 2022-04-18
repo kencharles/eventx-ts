@@ -17,27 +17,50 @@
   background-color: rgba(0, 0, 0, 0.04);
 }
 
+.eventX{
+  background:rgba(0,0,0,0.05);  
+  width: 100%;
+  height: 100vh;
+}
+
 .container{
   position: relative;
   width: 100%;
-  background:rgba(0,0,0,0.05);  
 }
 
 .header-bar{
+  display: block;
+  align-items: center;
+  text-align: center;
   top:0;
   position: sticky;
   min-height: 5vh;
-  width: 100vw;
-  background:green;    
-  padding: 1.8rem 6rem;
-  margin:0 auto
+  width: 100%;
+  background:rgb(10, 63, 124);    
+}
+
+.menu{
+  flex-grow: 50%;
+  align-items: center;
+  line-height: 50px;
+}
+.img{
+  width:200px;
+  height:60px;
+}
+.head-container{
+  width: 70%;
+  display: inline-flex;
+  text-align: center;
+  justify-content: space-between;
 }
 
 .content{
   padding:16px;
-  width: 100%;
+  width: 80%;
   height: auto;
   display: grid;
+  margin:0 auto;
   grid-gap: 3rem 1.5rem;
   grid-template-columns: repeat(auto-fill, 18rem);
   justify-content: center;

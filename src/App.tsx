@@ -7,7 +7,6 @@ import title from './title.png'
 import {
 	GithubOutlined,
 	RedoOutlined,
-	QuestionCircleFilled,
 	PlayCircleTwoTone,
 	PauseCircleTwoTone
 } from '@ant-design/icons'
@@ -39,13 +38,13 @@ const EventX: React.FC = () => {
 		try {
 			setLoading(true)
 			//---------------------------真实api部分()------------------------------
-			// let buffer: any[]=[];
-			// currencyKey.map(async(item:any)=>{
-			// 	const getList = await request({url:item})
-			// 	const getData:any = getList?.data?.data
+			// let buffer: any[] = []
+			// currencyKey.map(async (item: any) => {
+			// 	const getList = await request({ url: item })
+			// 	const getData: any = getList?.data?.data
 			// 	buffer.push(getData)
 			// })
-			//setBtc(buffer)
+			// setBtc(buffer)
 
 			// -----------------------mock部分--------------------------
 
@@ -76,7 +75,6 @@ const EventX: React.FC = () => {
 
 	useEffect(() => {
 		count === 0 && btcUsd()
-		// setTimer()
 		return () => clearInterval(intervalHandle.current)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])

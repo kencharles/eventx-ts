@@ -1,5 +1,5 @@
 import Axios, { AxiosRequestConfig } from 'axios'
-const Api = 'https://b1264722-067f-47f8-9d37-d4fc9e4b7d46.mock.pstmn.io' // mock数据
+const Api = 'https://0e7b514f-9826-40f4-823c-5ba189a48675.mock.pstmn.io' // mock数据
 // const Api = 'https://api.cryptonator.com/api/ticker/' // 真实API
 const axios = Axios.create({
   // 你的配置

@@ -4,7 +4,13 @@ import request from './utils/request'
 import PriceItem from './component/priceItem'
 import { Skeleton, Divider, Tooltip, message } from 'antd'
 import title from './title.png'
-import { GithubOutlined } from '@ant-design/icons'
+import {
+	GithubOutlined,
+	RedoOutlined,
+	QuestionCircleFilled,
+	PlayCircleTwoTone,
+	PauseCircleTwoTone
+} from '@ant-design/icons'
 // const currencyKey = [
 // 	'btc-usd',
 // 	'eth-usd',
@@ -20,9 +26,15 @@ import { GithubOutlined } from '@ant-design/icons'
 
 const EventX: React.FC = () => {
 	const [getBtc, setBtc] = useState<any>([])
-	const [loading, setLoading] = useState<boolean>(false)
+	const [loading, setLoading] = useState<boolean>(true)
 	const [count, setCount] = useState<number>(0)
+	const [isOpenTimer, setTimerButton] = useState<boolean>(false)
 	let intervalHandle = useRef<any>()
+	console.log(
+		'%c  intervalHandle:',
+		'color: #0e93e0;background: #aaefe5;',
+		intervalHandle
+	)
 	const btcUsd = async () => {
 		try {
 			setLoading(true)
@@ -33,6 +45,7 @@ const EventX: React.FC = () => {
 			// 	const getData:any = getList?.data?.data
 			// 	buffer.push(getData)
 			// })
+			//setBtc(buffer)
 
 			// -----------------------mock部分--------------------------
 
@@ -47,19 +60,23 @@ const EventX: React.FC = () => {
 		}
 	}
 
-	useEffect(() => {
-		document.title = 'Interview for WaikeiChan'
-	})
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const setTimer = () => {
+		setTimerButton(true)
 		intervalHandle.current = setInterval(() => {
 			btcUsd()
 			setCount((count) => count + 1)
 		}, 30000)
 	}
 
+	const closeTimer = () => {
+		clearInterval(intervalHandle.current)
+		setTimerButton(false)
+	}
+
 	useEffect(() => {
 		count === 0 && btcUsd()
-		setTimer()
+		// setTimer()
 		return () => clearInterval(intervalHandle.current)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
@@ -102,15 +119,37 @@ const EventX: React.FC = () => {
 						</div>
 					</div>
 				</div>
-				<Divider
-					style={{
-						width: '80%',
-						fontSize: '24px'
-					}}
-				>
-					Cryptocurrency Realtime Price
-				</Divider>
-				<div className='content'>{renderPriceItems()}</div>
+				<div className='Cryptocurrency-Realtime'>
+					<Divider
+						style={{
+							width: '80%',
+							fontSize: '24px'
+						}}
+					>
+						Cryptocurrency Realtime Price
+						<Tooltip
+							title={`${
+								isOpenTimer ? '关闭开启定时器' : '开启定时器，30s刷新一次汇率'
+							}`}
+						>
+							{isOpenTimer ? (
+								<PauseCircleTwoTone
+									className='timerButton'
+									onClick={() => closeTimer()}
+								/>
+							) : (
+								<PlayCircleTwoTone
+									className='timerButton'
+									onClick={() => setTimer()}
+								/>
+							)}
+						</Tooltip>
+						<Tooltip title='这是一个手动刷新按钮'>
+							<RedoOutlined onClick={btcUsd} className='refresh-icon' />
+						</Tooltip>
+					</Divider>
+					<div className='content'>{renderPriceItems()}</div>
+				</div>
 			</div>
 		</div>
 	)

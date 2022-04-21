@@ -24,16 +24,11 @@ import {
 // ] // api key for real api
 
 const EventX: React.FC = () => {
-	const [getBtc, setBtc] = useState<any>([])
-	const [loading, setLoading] = useState<boolean>(true)
-	const [count, setCount] = useState<number>(0)
-	const [isOpenTimer, setTimerButton] = useState<boolean>(false)
-	let intervalHandle = useRef<any>()
-	console.log(
-		'%c  intervalHandle:',
-		'color: #0e93e0;background: #aaefe5;',
-		intervalHandle
-	)
+	const [getBtc, setBtc] = useState([])
+	const [loading, setLoading] = useState(true)
+	const [count, setCount] = useState(0)
+	const [isOpenTimer, setTimerButton] = useState(false)
+	let intervalHandle = useRef<number>()
 	const btcUsd = async () => {
 		try {
 			setLoading(true)
@@ -62,7 +57,7 @@ const EventX: React.FC = () => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const setTimer = () => {
 		setTimerButton(true)
-		intervalHandle.current = setInterval(() => {
+		intervalHandle.current = window.setInterval(() => {
 			btcUsd()
 			setCount((count) => count + 1)
 		}, 30000)
@@ -75,6 +70,7 @@ const EventX: React.FC = () => {
 
 	useEffect(() => {
 		count === 0 && btcUsd()
+		renderPriceItems()
 		return () => clearInterval(intervalHandle.current)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])

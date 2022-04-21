@@ -123,7 +123,7 @@ const EventX: React.FC = () => {
 						Cryptocurrency Realtime Price
 						<Tooltip
 							title={`${
-								isOpenTimer ? '关闭开启定时器' : '开启定时器，30s刷新一次汇率'
+								isOpenTimer ? '关闭定时器' : '开启定时器，30s刷新一次汇率'
 							}`}
 						>
 							{isOpenTimer ? (
